@@ -4,12 +4,12 @@ WORKDIR /app
 COPY . .
 
 RUN go mod download
-
 RUN CGO_ENABLED=0 GOOS=linux go build -o server ./main.go
 
-FROM scratch
+FROM gcr.io/distroless/static-debian12
 
 COPY --from=builder /app/server /server
+COPY --from=builder /app/templates /templates
 
 EXPOSE 8080
 
