@@ -1,12 +1,16 @@
-FROM golang:1.22
+FROM golang:1.22 AS builder
 
 WORKDIR /app
-
 COPY . .
 
 RUN go mod download
-RUN go build -o server ./main.go
+
+RUN CGO_ENABLED=0 GOOS=linux go build -o server ./main.go
+
+FROM scratch
+
+COPY --from=builder /app/server /server
 
 EXPOSE 8080
 
-CMD ["/app/server", "serve"]
+CMD ["/server", "serve"]
