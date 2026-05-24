@@ -6,6 +6,7 @@ from spaceship.config import Settings
 from spaceship.routers import api, health
 
 # Modified by: Sofiia Kozachenko, IM-43
+# Checking Docker cache operation 
 
 def make_app(settings: Settings) -> FastAPI:
     app = FastAPI(

@@ -2,9 +2,11 @@ FROM python:3.13-bookworm
 
 WORKDIR /app
 
-COPY . .
+COPY requirements/ requirements/
 
 RUN pip install --no-cache-dir -r requirements/backend.in
+
+COPY . .
 
 EXPOSE 8000
 
