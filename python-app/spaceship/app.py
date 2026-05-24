@@ -5,6 +5,7 @@ from starlette.responses import FileResponse
 from spaceship.config import Settings
 from spaceship.routers import api, health
 
+# Modified by: Sofiia Kozachenko, IM-43
 
 def make_app(settings: Settings) -> FastAPI:
     app = FastAPI(
